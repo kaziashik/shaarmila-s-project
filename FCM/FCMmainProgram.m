@@ -67,7 +67,7 @@ disp('************ SEGMENTATION *****************');
         Imax=max(max(image));
         BWoutline = bwperim(image);
         Segout(BWoutline) = 1;
-        H=H+1;figure(H); imshow(Segout); title('Brain Segmentation');
+        H=H+1;figure(H); imshow(BWoutline); title('Brain Segmentation');
  
         fprintf('\n Max ROI intensity = %g\n',Imax);
         
