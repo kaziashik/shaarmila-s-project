@@ -15,7 +15,7 @@ image = dicomread(complete1);
 
 H=H+1;figure(H);imshow(image,[0 max(max(image))]);title('original image');
 [counts2,x2]=imhist(image);counts2(1)=0;%Hospital Database
-Z = smooth(counts2,10);%Hospital Database
+Z = movmean(counts2, 10);%Hospital Database
 H=H+1;figure(H);plot(x2,Z,'g');title('histogram original image');
 % 
 
@@ -59,9 +59,9 @@ fprintf('\t\t\n Max ROI intensity = %g\n',Imax);
  
 %% FEATURES EXTRACTION
     disp('************ FEATURES EXTRACTION ***************');
-    [filename,pathname]=uigetfile('*.mat','Select the .mat file');
-    [~, name,~] = fileparts(filename);
-    load([pathname,filename]);
+    %[filename,pathname]=uigetfile('*.mat','Select the .mat file');
+   % [~, name,~] = fileparts(filename);
+   %load([pathname,filename]);
 
     [Data] = classicalfeatures(image);
 

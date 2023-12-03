@@ -13,15 +13,16 @@ end
 disp('----- Calculating histogram');
 H=H+1;figure(H);
  
-for z=1:Nz
-    myimage(1:Nx,1:Ny)=ImageBlock(z,1:Nx,1:Ny);
-    [Sum_Pixels,Pixel_intens] = imhist(myimage,2^Newbit);
-    Sum_Pixels(length(Sum_Pixels))=0;
-    subplot(Ndiv,Ndiv,z,'FontSize',5);
-    plot(Pixel_intens,smooth (Sum_Pixels,30));
+for z = 1:Nz
+    myimage(1:Nx, 1:Ny) = ImageBlock(z, 1:Nx, 1:Ny);
+    [Sum_Pixels, Pixel_intens] = imhist(myimage, 2^Newbit);
+    Sum_Pixels(length(Sum_Pixels)) = 0;
+    subplot(Ndiv, Ndiv, z, 'FontSize', 5);
+    plot(Pixel_intens, movmean(Sum_Pixels, 30));
     title(z);
-     HistData0(z,:)=Sum_Pixels;
+    HistData0(z, :) = Sum_Pixels;
 end
+
  
 HistXaxis=Pixel_intens;
  
@@ -69,8 +70,8 @@ end
 MaxNormal(1)=0;
 MaxROI(1)=0;
 M=50;
-MaxNormal=smooth(MaxNormal,M);
-MaxROI=smooth(MaxROI,M);
+MaxNormal = movmean(MaxNormal, M);
+MaxROI = movmean(MaxROI, M);
 for n=1:Nx
     if ((MaxNormal(n)==0) && (MaxROI(n)>0))
         RangeROI(n)=5;
@@ -86,6 +87,6 @@ title('Range of Abnormal ROI');
  
 HistdataMax(1)=0;
 M=50;
-HistdataMax=smooth(HistdataMax,M);
+HistdataMax=movmean(HistdataMax,M);
 % H=H+1;figure(H);plot(HistXaxis, HistdataMax,'g');
 % title('Maximum block histogram');
