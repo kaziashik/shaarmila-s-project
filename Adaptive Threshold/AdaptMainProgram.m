@@ -31,22 +31,22 @@ disp('************ SEGMENTATION *****************');
  
 Segout=image;
 
-%     fprintf('1 = Bright ROI \n');% acute, hemorhhage and isles image
-%     fprintf('2 = Dark ROI \n');%chronic image
-%     selecttype = input('Type of ROI = ');
-%  
-%     
-%     if  selecttype==1
+    fprintf('1 = Bright ROI \n');% acute, hemorhhage and isles image
+    fprintf('2 = Dark ROI \n');%chronic image
+    selecttype = input('Type of ROI = ');
+ 
+    
+    if  selecttype==1
         [Bright_roi,~]=ThresholdSegment(image);
         image=Bright_roi;   
         
-%     elseif  selecttype==2
-%             image = tambahan (image); %for dark roi only
-%             [~,Dark_roi]=ThresholdSegment(image);
-%             image=Dark_roi;  
-% %             image=bwareaopen(image,100,8);
-%         
-% %     end
+    elseif  selecttype==2
+            image = tambahan (image); %for dark roi only
+            [~,Dark_roi]=ThresholdSegment(image);
+            image=Dark_roi;  
+            image=bwareaopen(image,100,8);
+        
+     end
 
  
 Imax=max(max(image));
